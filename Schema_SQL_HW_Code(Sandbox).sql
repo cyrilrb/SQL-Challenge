@@ -67,9 +67,8 @@ salary.
 */
 
 select employee.emp_no, employee.last_name, employee.first_name, employee.sex, salary.salary
-from employee
-inner join salary on employee.emp_no = salary.emp_no;
--- order by employee.last_name;
+from salary
+inner join employee on employee.emp_no = salary.emp_no;
 ------------------------------
 ------------------------------
 /*
@@ -90,22 +89,6 @@ the manager's employee number,
 last name, 
 first name.
 */
-
---First part: department number and deparment name.
-select dept_mgr.dept_no, dept.dept_name
-from dept
-inner join dept_mgr on dept.dept_no = dept_mgr.dept_no
-
-
---Second part of what is asked: em-_no, Last name, First name
-select dept_mgr.emp_no,  employee.last_name,employee.first_name
-from employee
-inner join dept_mgr on employee.emp_no = dept_mgr.emp_no
-
-
--- select * from dept_mgr;
-
--- combine both part one and two to make one table
 
 select dept_mgr.dept_no, dept.dept_name, dept_mgr.emp_no,  employee.last_name,employee.first_name
 from ((dept_mgr
