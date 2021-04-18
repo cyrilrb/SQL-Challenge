@@ -91,19 +91,27 @@ last name,
 first name.
 */
 
-
+--First part: department number and deparment name.
+select dept_mgr.dept_no, dept.dept_name
+from dept
+inner join dept_mgr on dept.dept_no = dept_mgr.dept_no
 
 
 --Second part of what is asked: em-_no, Last name, First name
 select dept_mgr.emp_no,  employee.last_name,employee.first_name
 from employee
 inner join dept_mgr on employee.emp_no = dept_mgr.emp_no
--- department.dept_name, dept_mgr.dept_no,
 
 
-select dept_mgr.emp_no, dept_mgr.dept_no, dept.dept_name
-from dept_mgr
-inner join dept_name on dept_mgr.dept_no = dept.dept_no
+-- select * from dept_mgr;
 
-select * from dept_mgr;
+-- combine both part one and two to make one table
+
+select dept_mgr.dept_no, dept.dept_name, dept_mgr.emp_no,  employee.last_name,employee.first_name
+from ((dept_mgr
+inner join dept on dept.dept_no = dept_mgr.dept_no)	   
+inner join employee on employee.emp_no = dept_mgr.emp_no);
+
+
+
 
