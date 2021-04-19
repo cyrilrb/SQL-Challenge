@@ -108,3 +108,18 @@ from ((dept_mgr
 inner join dept on dept.dept_no = dept_mgr.dept_no)	   
 inner join employee on employee.emp_no = dept_mgr.emp_no);	   
 
+
+/*
+Table #5 = List 
+first name, 
+last name, and 
+sex 
+for employees whose first name is "Hercules" 
+and 
+last names begin with "B."
+*/
+
+select employee.first_name, employee.last_name,  employee.sex
+from employee
+where (employee.first_name = 'Hercules') and (employee.last_name like 'B%');
+
