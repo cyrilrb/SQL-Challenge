@@ -1,9 +1,9 @@
-drop table if exists dept;
-drop table if exists dept_mgr;
-drop table if exists dept_employee;
-drop table if exists employee;
-drop table if exists salary;
-drop table if exists title;
+drop table if exists dept cascade;
+drop table if exists dept_mgr cascade;
+drop table if exists dept_employee cascade;
+drop table if exists employee cascade;
+drop table if exists salary cascade;
+drop table if exists title cascade;
 
 create table dept(
 	dept_no varchar primary key,
@@ -21,16 +21,16 @@ create table title(
 select * from title
 ------------------------------
 create table dept_mgr(
-	dept_no varchar,
-	emp_no varchar,
-	foreign key (dept_no) references dept(dept_no)
+	dept_no varchar primary key,
+	emp_no varchar
+-- 	foreign key (dept_no) references dept(dept_no)
 );
 select * from dept_mgr
 ------------------------------
 create table dept_employee(
-	dept_no varchar,
-	emp_no varchar,
-	foreign key (dept_no) references dept(dept_no)
+	emp_no varchar  primary key,
+	dept_no varchar
+-- 	foreign key (dept_no) references dept(dept_no)
 );
 select * from dept_employee
 ------------------------------
@@ -41,17 +41,17 @@ create table employee(
 	first_name varchar,
 	last_name varchar,
 	sex varchar,
-	hire_date date,
-	foreign key (emp_title_no) references title(title_id)
+	hire_date date
+-- 	foreign key (emp_title_no) references title(title_id)
 );
 
 -- foreign key (emp_no) references employee(emp_no)
 select * from employee
 ------------------------------
 create table salary(
-	emp_no varchar,
-	salary int,
-	foreign key (emp_no) references employee(emp_no)
+	emp_no varchar primary key,
+	salary int
+-- 	foreign key (emp_no) references employee(emp_no)
 );
 select * from salary
 
@@ -95,6 +95,16 @@ from ((dept_mgr
 inner join dept on dept.dept_no = dept_mgr.dept_no)	   
 inner join employee on employee.emp_no = dept_mgr.emp_no);
 
+/*
+Table 4 = List the department of each employee with the following information: 
+employee number, 
+last name, 
+first name, and 
+department name.
+*/
 
-
+select employee.emp_no, employee.last_name,employee.first_name, dept.dept_name
+from ((dept_mgr
+inner join dept on dept.dept_no = dept_mgr.dept_no)	   
+inner join employee on employee.emp_no = dept_mgr.emp_no);	   
 
