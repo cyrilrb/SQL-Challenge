@@ -1,34 +1,34 @@
-department
+dept
 -
-department_no varchar PK
-department_name varchar
+dept_no varchar PK
+dept_name varchar
 
-dept_employee
-- 
-department_no varchar FK >- department.department_no
-emp_no varchar FK >- employee.emp_no
+title
+-
+title_id varchar PK
+title varchar
 
 dept_mgr
-- 
-department_no varchar FK >- department.department_no
-emp_no varchar FK >- employee.emp_no
+-
+dept_no varchar FK >- dept.dept_no
+emp_no int FK >- employee.emp_no
+
+dept_employee
+-
+emp_no int FK >- employee.emp_no
+dept_no varchar FK >- dept.dept_no
 
 employee
 -
-emp_no int PK 
-title_no varchar FK >- title.title_no
-emp_bday varchar
+emp_no int PK
+emp_title_no varchar FK >- title.title_id
+birth_date date
 first_name varchar
 last_name varchar
-emp_sex varchar
-hire_date varchar
+sex varchar
+hire_date date
 
 salary
 -
 emp_no int FK >- employee.emp_no
-salary int
-
-title
--
-title_no varchar PK
-title varchar
+salary int PK
